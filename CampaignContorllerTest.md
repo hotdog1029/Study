@@ -1,4 +1,6 @@
 
+# CampaignControllerTest 코드 리뷰
+
 <pre>
 <code>
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
@@ -13,8 +15,5 @@ public class CampaignControllerTest {
 </code>
 </pre>
 
-
-이것이것은
-
-이거나
-이것은
+## @SpringBootTest
+### 스프링 부트는 해당 어노테이션을 통해 스프링부트 어플리케이션 테스트에 필요한 거의 모든 의존성 제공한다.

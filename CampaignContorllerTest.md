@@ -78,6 +78,8 @@ perform()메소드는 DispatcherServlet에 요청을 의뢰하는 역할을 한�
 ## .andExpect(status().isCreated()).andExpect(jsonPath("$.name", is("이름"))) ....
 andExpect()메소드는 인수에 실행결과를 검증하는 MockMvcResultMatchers에서 제공하는 ResultMatcher 을 지정한다
 
+## 캠페인 추가가 잘되냐 안되냐 확인
+
 <pre>
 <code>
   @Test
@@ -95,3 +97,52 @@ andExpect()메소드는 인수에 실행결과를 검증하는 MockMvcResultMatc
   }
 </code>
 </pre>
+
+## add_error 테스트는 content로 응답 본문 내용 검증을 하는데 {"name":"이름","purpose":"목표","duration":"실행기간","budget":0,"product":1}이 안들어왔으니 예외가 발생
+## 캠페인을 추가할 떄 필수 인자값을 안넣으면 오류가 잘나냐 안나냐 확인
+
+<pre>
+<code>
+  public void all() throws Exception {
+    mvc.perform(get("/campaigns/all")).andDo(print())
+
+      .andExpect(status().isOk()).andExpect(jsonPath("$").isArray());
+</code>
+</pre>
+
+## 모르겠음 // 모든 데이터를 잘 가져오냐 안가져오냐의 테스트인거같음
+
+<pre>
+<code>
+  @Transactional
+  @Test
+  public void id() throws Exception {
+    String content = objectMapper
+      .writeValueAsString(new AddCampaignDto(
+        "이름",
+        "목표",
+        "실행기간",
+        0L,
+        1));
+
+    MvcResult result = mvc
+      .perform(post("/campaigns").header("Content-Type", "application/json")
+        .content(content))
+      .andDo(print())
+
+      .andExpect(status().isCreated()).andReturn();
+
+    Campaign campaign = objectMapper
+      .readValue(result.getResponse().getContentAsString(), Campaign.class);
+
+    mvc.perform(get("/campaigns/" + campaign.getId())).andDo(print())
+
+      .andExpect(status().isOk()).andExpect(jsonPath("$.name", is("이름")))
+      .andExpect(jsonPath("$.purpose", is("목표")))
+      .andExpect(jsonPath("$.duration", is("실행기간")))
+      .andExpect(jsonPath("$.budget", is(0)))
+      .andExpect(jsonPath("$.product", is(1)));
+  }
+</code>
+</pre>
+## 캠페인 객체를 생성 => 객체를 String으로 직렬호 => 응답값 mvcResult를 얻어서 다시 오브젝트로 역직렬화 => getId를 통해 해당 Id의 값들과 내가 설정한 값들이 맞는지 확인

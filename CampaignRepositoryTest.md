@@ -102,3 +102,63 @@ Campaign.builder를 통해 새로운 campaign 생성 => 캠페인리포지토리
   }
 </code>
 </pre>
+
+아무것도 없는 oldCampaignList를 campaignRepository.findAll()을 통해 생성 => 캠페인 1, 캠페인 2를 각각 생성하고 리포지토리에 저장 => 그리고 newCampaignList를 campaignRepository.findAll() 통해 생성 => asswerEquals를 통해 oldCampaignList.size() + 2가 newCampaignList.size()랑 같은지 확인 => newCampaignList에 campaign1,campaign2가 포함되어 있는지 확인
+
+<pre>
+<code>
+  public void update() throws Exception {
+    // given
+    Campaign campaign = Campaign.builder()
+      .name("테스트")
+      .state("테스트중")
+      .cost(0L)
+      .product(1)
+      .build();
+    campaignRepository.save(campaign);
+
+    // when
+    campaign.setName("새로운테스트");
+
+    // then
+    Campaign campaignFind = campaignRepository.findById(campaign.getId())
+      .orElseThrow(() -> new Exception("cannot find campaign"));
+
+    assertEquals(campaign.getName(), campaignFind.getName());
+  }
+</code>
+</pre>
+
+새로운 캠페인 생성 => 캠페인 리포지토리에 저장 => setName을 통해 캠페인 이름 다시 설정 => 리포지토리의 캠페인과 내가 설정한 캠페인의 이름이 같은지 확인
+
+<pre>
+<code>
+  @Test
+  public void deleteAll() throws Exception {
+    // given
+    Campaign campaign1 = Campaign.builder()
+      .name("테스트1")
+      .state("테스트중1")
+      .cost(0L)
+      .product(1)
+      .build();
+    campaignRepository.save(campaign1);
+
+    Campaign campaign2 = Campaign.builder()
+      .name("테스트2")
+      .state("테스트중2")
+      .cost(0L)
+      .product(2)
+      .build();
+    campaignRepository.save(campaign2);
+
+    // when
+    campaignRepository.deleteAll();
+
+    // then
+    assertTrue(campaignRepository.findAll().isEmpty());
+  }
+</code>
+</pre>
+
+캠페인1, 캠페인2 생성한 후 리포지토리에 저장 => campaignRepository.deleteAll()를 이용하여 모두 삭제 => asserTrue를 이용하여 campaignRepository.findAll()하였을 때 isEmpty 인지확인

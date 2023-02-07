@@ -1,6 +1,7 @@
 
 # CampaignControllerTest 코드 리뷰
 
+# 1
 <pre>
 <code>
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
@@ -43,6 +44,8 @@ Object -> String 문자열
 ## @Autowired private MockMvc mvc;
 실제 객체와 비슷하지만 테스트에 필요한 기능만 가지는 가짜 객체를 만들어서 애플리케이션 서버에 배포하지 않고도 스프링 MVC 동작을 재현할 수 있는 MockMvc 선언
 
+# 2
+
 <pre>
 <code>
   @Transactional
@@ -80,6 +83,8 @@ andExpect()메소드는 인수에 실행결과를 검증하는 MockMvcResultMatc
 
 ## 캠페인 추가가 잘되냐 안되냐 확인
 
+# 3
+
 <pre>
 <code>
   @Test
@@ -98,6 +103,7 @@ andExpect()메소드는 인수에 실행결과를 검증하는 MockMvcResultMatc
 </code>
 </pre>
 
+# 4
 ## add_error 테스트는 content로 응답 본문 내용 검증을 하는데 {"name":"이름","purpose":"목표","duration":"실행기간","budget":0,"product":1}이 안들어왔으니 예외가 발생
 ## 캠페인을 추가할 떄 필수 인자값을 안넣으면 오류가 잘나냐 안나냐 확인
 
@@ -112,6 +118,7 @@ andExpect()메소드는 인수에 실행결과를 검증하는 MockMvcResultMatc
 
 ## 모르겠음 // 모든 데이터를 잘 가져오냐 안가져오냐의 테스트인거같음
 
+# 5
 <pre>
 <code>
   @Transactional

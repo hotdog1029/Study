@@ -33,7 +33,9 @@ public class AddCampaignDto {
 @RequiredArgsConstructor => final이나 @NonNull인 필드 값만 파라미터로 받는 생성자 만듦
 
 ## @ApiModel
+@ApiModel: Swagger model 에 정보를 추가(모델 클래스)
 
-
+## @ApiModelProperty
+@ApiModelProperty를 사용하는 DTO Class Field에 추가하면, 해당 DTO Field의 에제 Data를 추가할 수 있다.
 
 

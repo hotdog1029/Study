@@ -22,3 +22,18 @@ public class AddCampaignDto {
 </pre>
 
 ## @Data
+그냥 롬북의 유용한 어노테이션(@Getter, @Setter, @ToString, @RequireArgsConstructoer 등)을 한꺼번에 호출을 하는 것
+
+## @~Constructoer
+
+@NoArgsConstructor => 파라미터가 없는 기본 생성자를 생성
+
+@AllArgsConstructor => 모든 필드 값을 파라미터로 받는 생성자를 만듦
+
+@RequiredArgsConstructor => final이나 @NonNull인 필드 값만 파라미터로 받는 생성자 만듦
+
+## @ApiModel
+
+
+
+

@@ -64,3 +64,12 @@ public class CampaignController {
 하지만 Spring MVC의 컨트롤러를 사용하면서 Data를 반환해야 하는 경우도 있다. 컨트롤러에서는 데이터를 반환하기 위해 @ResponseBody 어노테이션을 활용해주어야 한다. 이를 통해 Controller도 Json 형태로 데이터를 반환할 수 있다.
 
 @RestController는 @Controller에 @ResponseBody가 추가된 것이다. 당연하게도 RestController의 주용도는 Json 형태로 객체 데이터를 반환하는 것이다. 최근에 데이터를 응답으로 제공하는 REST API를 개발할 때 주로 사용하며 객체를 ResponseEntity로 감싸서 반환한다.
+
+# @ApiOperation (Swagger 어노테이션)
+요청 URL 에 매핑된 API 에 대한 설명
+# @PostMapping
+주어진 URL 표현식과 일치하는 HTTP POST 요청을 처리
+# @ApiResponse
+
+# @PathVariable
+REST API에서 URL에 변수가 들어가는걸 실무에서 많이 볼 수 있다. 그런 것을 처리해주는 거임

@@ -71,14 +71,12 @@ swaager에 Tag로 정보를 남길 수 있는 기능
 
 value는 요청받을 url을 설정하게 된다. method는 어떤 요청으로 받을지 정의하게 된다.(GET,POST,PUT,DELETE)
 
-# @RequiredArgsConstructor
-
 # @ApiOeration
-
+요청 URL에 매핑된 API에 대한 설명
 # @PostMapping
-
+값 수정할 떄 사용
 # @ApiResponse
-
+응답에 대한 설명
 # @RequestBody
 
 # @PathVariable

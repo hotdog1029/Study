@@ -78,6 +78,12 @@ value는 요청받을 url을 설정하게 된다. method는 어떤 요청으로 
 # @ApiResponse
 응답에 대한 설명
 # @RequestBody
-
+@RequestBody 어노테이션을 사용하여 HTTP 요청 본문에 담긴 값들을 자바객체로 변환시켜, 객체에 저장한다.
 # @PathVariable
+Rest API에서 URI에 변수가 들어가는 것을 실무에서 많이 볼 수 있다.
+
+예를 들면, 아래 URI에서 밑줄 친 부분이 @PathVariable로 처리해줄 수 있는 부분이다.
+
+![image](https://user-images.githubusercontent.com/74352543/220015625-1552e3fd-88dd-4876-a0d3-2013b67dc8e0.png)
+
   

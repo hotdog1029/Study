@@ -57,3 +57,76 @@
 
 ![image](https://user-images.githubusercontent.com/74352543/220250697-4a568302-b7fb-4bd0-9e59-58a249ab0782.png)
 
+# HTTP API 데이터 전송
+* 서버 to 서버
+ * 백엔드 시스템 통신
+* 앱 클라이언트
+ * 아이폰, 안드로이드
+* 웹 클라리언트
+ * HTML에서 Form 전송 대신 자바 스크립트를 통한 통신에 사용(AJAX)
+ * 예) React, VueJs 같은 웹 클라이언트와 API 통신
+* POST, PUT, PATCH: 메시지 바디를 통해 데이터 전송
+* GET: 조회, 쿼리 파라미터로 데이터 전달
+* Content-Type: application/json을 주로 사용 (사실상 표준)
+
+# HTTP API 설계 예시
+
+# API 설계 - POST 기반 등록 (회원 관리 시스템)
+* 회원 목록 /members => GET
+* 회원 등록 /members => POST
+* 회원 조회 /members/{id} => GET
+* 회원 수정 /members/{id} => PATCH, PUT, POST
+* 회원 삭제 /members/{id} => DELETE
+
+# POST - 신규 자원 등록 특징
+* 클라이언트는 등록될 리소스의 URI를 모른다.
+ * 회원등록 /members -> POST
+ * POST /members
+* 서버가 새로 등록된 리소스 URI를 생성해준다.
+ * HTTP/1.1 202 Created Location: /members/100
+* 컬렉션
+ * 서버가 관리하는 리소스 디렉토리
+ * 서버가 리소스의 URI를 생성하고 관리
+ * 여기서 컬렉션은 /members
+
+# API 설계 - PUT 기반 등록 (파일 관리 시스템)
+* 파일 목록 /files => GET
+* 파일 등록 /files/{filename} => PUT
+* 파일 조회 /members/{filename} => GET
+* 파일 삭제 /members/{filename} => DELETE
+* 파일 대량 등록 /files -> POST
+
+# PUT - 신규 자원 등록 특징
+* 클라이언트가 리소스 URI를 알고 있어야 한다.
+ * 파일 등록 /files/{filename} -> PUT
+ * PUT /files/star.jpg
+* 클라이언트가 직접 리소스의 URI를 지정한다.
+* 스토어(Store)
+ * 클라이언트가 관리하는 리소스 저장소
+ * 클라이언트가 리소스의 URI를 알고 관리
+ * 여기서 스토어는 /files
+
+**대부분 POST 기반의 컬렉션을 사용한다.**
+
+# HTML FORM 사용
+* HTML FORM은 GET, POST만 지원
+* AJAX 같은 기술을 사용해서 해결 가능
+* 여기서는 순수 HTML, HTML FORM 이야기
+* GET, POST만 지원하므로 제약이 있음
+
+# 예시
+* 회원 목록 /members -> GET
+* 회원 등록 폼 /members/new -> GET
+* 회원 등록 /members/new , /members -> POST
+* 회원 조회 /members/{id} -> GET
+* 회원 수정 폼 /members/{id}/edit -> GET
+* 회원 수정 /members/{id}/edit, /members/{id} -> POST
+* 회원 삭제 /members/{id}/delete -> POST
+
+# 특징
+* HTML FORM은 GET, POST만 지원
+* 컨트롤 URI
+ * GET, POST만 지원하므로 제약이 있음
+ * 이런 제약을 해결하기 위해 동사로 된 리소스 경로 사용
+ * POST의 /new, /edit, /delete가 컨트롤 URI
+ * HTTP 메서드로 해결하기 애매한 경우 사용(HTTP API 포함)

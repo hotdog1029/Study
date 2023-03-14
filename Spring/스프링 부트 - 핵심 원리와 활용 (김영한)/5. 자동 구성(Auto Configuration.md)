@@ -1,1 +1,36 @@
-d
+# 예제 만들기
+
+
+Member 엔티티
+<pre>
+<code>
+package hello.member;
+import lombok.Data;
+@Data
+public class Member {
+ private String memberId;
+ private String name;
+ public Member() {
+ }
+ public Member(String memberId, String name) {
+ this.memberId = memberId;
+ this.name = name;
+ }
+}
+</code>
+</pre>
+
+* MemberID, name 필드가 있는 간단한 회원 객체이다.
+* 기본 생성자, memberId, name을 포함하는 생성자 이렇게 2개의 생성자를 만들었다.
+
+# 
+
+
+
+
+
+
+<pre>
+<code>
+</code>
+</pre>
